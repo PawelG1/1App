@@ -1,0 +1,95 @@
+#:kivy 1.0
+WindowManager:
+    Logo:
+    SecondWindow:
+    ThirdWindow:
+
+<Logo>:
+    name: "logo"
+
+    GridLayout:
+        cols:1
+
+        Label:
+            text: "Sailboat control app "
+
+        GridLayout:
+            cols: 2
+
+            Button:
+                text: "start !"
+                on_release:
+                    app.root.current = "Controls" 
+                    root.manager.transition.direction = "left"
+            
+            Button:
+                text: "Quit"
+                on_release:
+                    app.stop()
+                    
+
+
+<SecondWindow>:
+    name: "Controls"
+    AnchorLayout:
+        anchor_y: 'top'
+
+        GridLayout:
+            cols:1
+            rows:2
+            GridLayout:
+                cols:4
+                Button:
+                    text:'navi lights'
+                Button:
+                    text:'motor'
+                Button:
+                    text:'anchor'
+                Button:
+                    text:'safe mode'
+            Button:
+                text:'sliders'
+                on_release:
+                    app.root.current = "Sliders" 
+                    root.manager.transition.direction = "left" 
+<ThirdWindow>:
+    name: "Sliders"
+    
+    BoxLayout:
+        orientation: 'horizontal'
+
+        Slider:
+            id: ster
+            min:-90
+            max:90
+            value: 0
+            step: 0.5
+            orientation: 'vertical'
+        GridLayout:
+            cols:1
+            rows:2
+            Label:
+                text: 'rudder angle: '
+            Label:
+                text: str(ster.value)
+
+        Slider:
+            id: sails
+            min:-90
+            max:90
+            value: 0
+            step: 0.5
+            orientation: 'vertical'
+        GridLayout:
+            cols:1
+            rows:2
+            Label:
+                text: 'sails angle: '
+            Label:
+                text: str(sails.value)
+        Button:
+            text: '0 angle on rudder'
+            on_release:
+                ster.value = 0
+         
+        
