@@ -2,7 +2,7 @@
 import mysql.connector
   
 dataBase = mysql.connector.connect(
-    host = "127.0.0.1",
+    host = "172.28.96.170",
     user = "root",
     port = "3306",
     database = "zaglowka")
