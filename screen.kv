@@ -39,14 +39,40 @@ WindowManager:
             rows:2
             GridLayout:
                 cols:4
-                Button:
-                    text:'navi lights'
-                Button:
-                    text:'motor'
-                Button:
-                    text:'anchor'
-                Button:
-                    text:'safe mode'
+                BoxLayout:
+                    orientation:"vertical"
+                    Label:
+                        text: "navi lights"
+                    Switch:
+                        id: navi
+                        active: False
+                        on_active:  root.btn_states(navi.active, motor.active, anchor.active)
+                           
+
+                BoxLayout:
+                    orientation: "vertical"    
+                    Label:
+                        text:"motor"
+                    Switch:
+                        id: motor
+                        active: False
+                        on_active: root.btn_states(navi.active, motor.active, anchor.active)
+
+                BoxLayout:
+                    orientation: "vertical"
+                    Label:
+                        text:'anchor'
+                    Switch:
+                        id: anchor
+                        active: False
+                        on_active: root.btn_states(navi.active, motor.active, anchor.active)
+                BoxLayout:
+                    orientation: "vertical"
+                    Label:
+                        text:'safe mode'
+                    Switch:
+                        active: False
+                        
             Button:
                 text:'sliders'
                 on_release:
@@ -56,7 +82,31 @@ WindowManager:
     name: "Sliders"
     
     BoxLayout:
-        orientation: 'horizontal'
+        orientation: 'vertical'
+
+        
+        Slider:
+            id: sails
+            min:0
+            max:180
+            value: 180
+            value_track: True
+            value_track_color: [0,0,1,1]
+            step: 0.5
+            orientation: 'horizontal'
+
+            on_value:
+                root.sails_value(sails.value)
+            on_touch_up:
+                root.slider_release(ster.value, sails.value)
+
+        GridLayout:
+            cols:1
+            rows:2
+            Label:
+                text: 'sails angle: '
+            Label:
+                text: str(sails.value)
 
         Slider:
             id: ster
@@ -64,7 +114,13 @@ WindowManager:
             max:90
             value: 0
             step: 0.5
-            orientation: 'vertical'
+            orientation: 'horizontal'
+
+            on_value:
+                root.rudder_value(ster.value)
+            on_touch_up:
+                root.slider_release(ster.value, sails.value)
+
         GridLayout:
             cols:1
             rows:2
@@ -73,23 +129,19 @@ WindowManager:
             Label:
                 text: str(ster.value)
 
-        Slider:
-            id: sails
-            min:-90
-            max:90
-            value: 0
-            step: 0.5
-            orientation: 'vertical'
-        GridLayout:
-            cols:1
-            rows:2
-            Label:
-                text: 'sails angle: '
-            Label:
-                text: str(sails.value)
-        Button:
-            text: '0 angle on rudder'
-            on_release:
-                ster.value = 0
+        BoxLayout:
+            orientation: "horizontal"    
+            Button:
+                size_hint: (0.3, 1)
+                text: "switches"
+                on_release:
+                    app.root.current = "Controls" 
+                    root.manager.transition.direction = "right" 
+
+            Button:
+                text: '0 angle on rudder'
+                on_release:
+                    ster.value = 0
+                    root.slider_release(ster.value, sails.value)
          
         

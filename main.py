@@ -1,15 +1,33 @@
 from kivy.app import App
 from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager, Screen
+from kivy.properties import ObjectProperty
+import update_cont
 
 class Logo(Screen):
     pass
 
 class SecondWindow(Screen):
-    pass
+    name = ObjectProperty(None)
+    
+    def btn_states(self,n , m, a):
+        print("przycisk:", self.name)
+        update_cont.update_states(n, m, a)
 
 class ThirdWindow(Screen):
-    pass
+    
+    def sails_value(self, s):
+        print("wartosc:", s)
+
+    def rudder_value(self, r):
+        print("wartosc:", r)
+
+    def slider_release(self, r, s):
+        print(" | puszczono")
+        print(" | rudder ang. :", r )
+        print(" | boom ang. : ", s )
+        print("----------------------")
+        update_cont.update_sliders(r, s)
 
 class WindowManager(ScreenManager):
     pass
