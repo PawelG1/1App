@@ -4,6 +4,7 @@ from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.properties import ObjectProperty
 import update_cont
 
+
 class Logo(Screen):
     pass
 
@@ -16,11 +17,7 @@ class SecondWindow(Screen):
 
 class ThirdWindow(Screen):
     
-    def sails_value(self, s):
-        print("wartosc:", s)
-
-    def rudder_value(self, r):
-        print("wartosc:", r)
+    
 
     def slider_release(self, r, s):
         print(" | puszczono")
@@ -43,3 +40,6 @@ class TestApp(App):
 
 if __name__ == "__main__":
     TestApp().run()
+
+print("koniec..")
+update_cont.exit()

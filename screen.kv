@@ -95,11 +95,6 @@ WindowManager:
             step: 0.5
             orientation: 'horizontal'
 
-            on_value:
-                root.sails_value(sails.value)
-            on_touch_up:
-                root.slider_release(ster.value, sails.value)
-
         GridLayout:
             cols:1
             rows:2
@@ -115,11 +110,6 @@ WindowManager:
             value: 0
             step: 0.5
             orientation: 'horizontal'
-
-            on_value:
-                root.rudder_value(ster.value)
-            on_touch_up:
-                root.slider_release(ster.value, sails.value)
 
         GridLayout:
             cols:1
@@ -142,6 +132,12 @@ WindowManager:
                 text: '0 angle on rudder'
                 on_release:
                     ster.value = 0
+                    root.slider_release(ster.value, sails.value)
+
+            Button:
+                
+                text: "send values"
+                on_release:
                     root.slider_release(ster.value, sails.value)
          
         
