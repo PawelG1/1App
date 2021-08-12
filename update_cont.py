@@ -1,4 +1,4 @@
-# update records in pos_stored structure 
+# update records in pos_stored structure PG
 import mysql.connector
   
 dataBase = mysql.connector.connect(

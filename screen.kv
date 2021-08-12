@@ -3,6 +3,8 @@ WindowManager:
     Logo:
     SecondWindow:
     ThirdWindow:
+    Attribb:
+    Measurments:
 
 <Logo>:
     name: "logo"
@@ -11,19 +13,26 @@ WindowManager:
         cols:1
 
         Label:
-            text: "Sailboat control app "
+            text: "Sailboat Control App "
+        Image:
+            source: 'logoB.png'
+            allow_stretch: True
 
-        GridLayout:
-            cols: 2
+        BoxLayout:
+            orientation:"horizontal"
 
             Button:
                 text: "start !"
+                background_color: [.7,.7,.7, 1]
+                size_hint: (1, 0.7)
                 on_release:
                     app.root.current = "Controls" 
                     root.manager.transition.direction = "left"
             
             Button:
                 text: "Quit"
+                background_color: [.7,.7,.7, 1]
+                size_hint: (1, 0.7)
                 on_release:
                     app.stop()
                     
@@ -36,13 +45,18 @@ WindowManager:
 
         GridLayout:
             cols:1
-            rows:2
+            rows:3
             GridLayout:
                 cols:4
                 BoxLayout:
                     orientation:"vertical"
                     Label:
                         text: "navi lights"
+                    
+                    Image:
+                        source: 'lightB.png'
+                        allow_stretch: True
+
                     Switch:
                         id: navi
                         active: False
@@ -53,6 +67,11 @@ WindowManager:
                     orientation: "vertical"    
                     Label:
                         text:"motor"
+
+                    Image:
+                        source: 'motor.png'
+                        allow_stretch: True
+
                     Switch:
                         id: motor
                         active: False
@@ -62,6 +81,11 @@ WindowManager:
                     orientation: "vertical"
                     Label:
                         text:'anchor'
+
+                    Image:
+                        source: 'anchor.png'
+                        allow_stretch: True
+                     
                     Switch:
                         id: anchor
                         active: False
@@ -70,11 +94,25 @@ WindowManager:
                     orientation: "vertical"
                     Label:
                         text:'safe mode'
+                    
+                    Image:
+                        source: 'shield.png'
+                        allow_stretch: True
+
                     Switch:
                         active: False
-                        
             Button:
+                size_hint: (1, 0.5)
+                text:'data, measurments'
+                background_color: [.5,.5,.5, 1]
+                on_release:
+                    app.root.current = "measurments" 
+                    root.manager.transition.direction = "left"
+
+            Button:
+                size_hint: (1, 0.5)
                 text:'sliders'
+                background_color: [.5,.5,.5, 1]
                 on_release:
                     app.root.current = "Sliders" 
                     root.manager.transition.direction = "left" 
@@ -91,17 +129,24 @@ WindowManager:
             max:180
             value: 180
             value_track: True
-            value_track_color: [0,0,1,1]
+            value_track_color: [255,255,255,100]
             step: 0.5
             orientation: 'horizontal'
+        BoxLayout:
+            orientation: 'horizontal'
 
-        GridLayout:
-            cols:1
-            rows:2
-            Label:
-                text: 'sails angle: '
-            Label:
-                text: str(sails.value)
+            GridLayout:
+                cols:1
+                rows:2
+                Label:
+                    text: 'sails angle: '
+                Label:
+                    text: str(sails.value)
+
+            Image:
+                source: 'sail.png'
+                allow_stretch: True
+            
 
         Slider:
             id: ster
@@ -111,25 +156,35 @@ WindowManager:
             step: 0.5
             orientation: 'horizontal'
 
-        GridLayout:
-            cols:1
-            rows:2
-            Label:
-                text: 'rudder angle: '
-            Label:
-                text: str(ster.value)
+        BoxLayout:
+            orientation: 'horizontal'
+            
+            GridLayout:
+                cols:1
+                rows:2
+                
+                Label:
+                    text: 'rudder angle: '
+                Label:
+                    text: str(ster.value)
+            
+            Image:
+                source: 'steering-wheel.png'
+                allow_stretch: True
 
         BoxLayout:
             orientation: "horizontal"    
             Button:
-                size_hint: (0.3, 1)
+                size_hint: (0.7, 1)
                 text: "switches"
+                background_color: [.5,.5,.5, 1]
                 on_release:
                     app.root.current = "Controls" 
                     root.manager.transition.direction = "right" 
 
             Button:
                 text: '0 angle on rudder'
+                background_color: [.5,.5,.5, 1]
                 on_release:
                     ster.value = 0
                     root.slider_release(ster.value, sails.value)
@@ -137,7 +192,46 @@ WindowManager:
             Button:
                 
                 text: "send values"
+                background_color: [.5,.5,.5, 1]
                 on_release:
                     root.slider_release(ster.value, sails.value)
-         
+
+<Measurments>:
+    name: "measurments"
+
+    BoxLayout:
+        orientation: "horizontal"
+
+        Button:
+            text: "attribuitions"
+            size_hint: (0.7, 1)
+            background_color: [.5,.5,.5, 1]
+            on_release:
+                app.root.current = "Atr" 
+                root.manager.transition.direction = "left" 
+
+<Attribb>:
+    name: "Atr"
+
+    BoxLayout:
+        orientation: 'vertical'
+
+        Label:
+            text: "Author: PG"
+
+        Label:
+            text: "Icons made by :"    
+        Label:
+            text: "https://www.flaticon.com/authors/catkuro"
+        Label:
+            text: "https://freeicons.io/profile/3"
+        Label:
+            text: "https://freeicons.io/profile/823"
+        Label:
+            text: "https://freeicons.io/profile/730"
+        Label:
+            text: "https://icon-icons.com/users/7OwrKFGIruD4Yub0iw04I/icon-sets/"
+
+
+        
         

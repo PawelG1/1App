@@ -16,8 +16,6 @@ class SecondWindow(Screen):
         update_cont.update_states(n, m, a)
 
 class ThirdWindow(Screen):
-    
-    
 
     def slider_release(self, r, s):
         print(" | puszczono")
@@ -25,6 +23,12 @@ class ThirdWindow(Screen):
         print(" | boom ang. : ", s )
         print("----------------------")
         update_cont.update_sliders(r, s)
+
+class Measurments(Screen):
+    pass
+
+class Attribb(Screen):
+    pass
 
 class WindowManager(ScreenManager):
     pass
@@ -39,6 +43,7 @@ class TestApp(App):
 
 
 if __name__ == "__main__":
+    print("App created by Paweł Gałusza")
     TestApp().run()
 
 print("koniec..")
