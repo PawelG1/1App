@@ -1,10 +1,40 @@
 #:kivy 1.0
+#:import MapView kivy.garden.mapview.MapView
+#:import MapView kivy.garden.mapview.MapMarker
+
+
 WindowManager:
     Logo:
     SecondWindow:
     ThirdWindow:
     Attribb:
     Measurments:
+    Map:
+
+
+<Map>:
+    name: "map"
+
+    MapView:
+        lat: 50.264364174078516 
+        lon: 22.390436108311874
+        zoom: 18
+        #50.264364174078516, 22.390436108311874
+
+        MapMarkerPopup:
+            id: boat_loc
+            lat: 50.264364174078516
+            lon: 22.390436108311874
+            source: 'ship_gps.png'
+            popup_size: dp(23), dp(13)
+            size_hint: (0.1, 0.1)
+
+            Button:
+                id: uj
+                text:"ruch"
+                on_touch_down:
+                    root.lift_off(0)
+
 
 <Logo>:
     name: "logo"
@@ -36,8 +66,6 @@ WindowManager:
                 on_release:
                     app.stop()
                     
-
-
 <SecondWindow>:
     name: "Controls"
     AnchorLayout:
@@ -103,10 +131,10 @@ WindowManager:
                         active: False
             Button:
                 size_hint: (1, 0.5)
-                text:'data, measurments'
+                text:'map'
                 background_color: [.5,.5,.5, 1]
                 on_release:
-                    app.root.current = "measurments" 
+                    app.root.current = "map" # <----change to measurments
                     root.manager.transition.direction = "left"
 
             Button:
