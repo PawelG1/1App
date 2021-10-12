@@ -6,7 +6,8 @@ from kivy.garden.mapview import MapView, MapMarker
 from kivy.clock import Clock
 import update_cont
 import get_pos
-import time
+
+
 
 class Logo(Screen):
     pass
@@ -31,6 +32,7 @@ class Measurments(Screen):
     pass
 
 class Map(Screen):
+    
     #test A1
     def __init__(self, **kw):
         super().__init__(**kw)
@@ -61,7 +63,10 @@ class Map(Screen):
 
     def on_frame(self, dt):
         pass
-    #-------    
+    #-------  
+    
+    
+    pass  
  
 
 class Attribb(Screen):
@@ -79,8 +84,8 @@ class TestApp(App):
     #Clock.schedule_once(map.lift_off, 0.5)
 
     def build(self):
-        #map = Map()
-        #Clock.schedule_interval(map.lift_off, 0.5)
+        map = Map()
+        Clock.schedule_interval(map.lift_off, 0.5)
         #Clock.schedule_interval(self.update, 1)
         return kv
 
@@ -94,7 +99,7 @@ class TestApp(App):
 
 
 if __name__ == "__main__":
-    print("App created by Paweł Gałusza")
+    print("App created by Pawel Galusza")
     TestApp().run()
 
 print("koniec..")
