@@ -1,13 +1,18 @@
 # update records in pos_stored structure PG
 import mysql.connector
-  
-dataBase = mysql.connector.connect(
-    host = "172.28.96.170",
-    user = "root",
-    port = "3306",
-    database = "zaglowka")
+
+def connect_to_db(): 
+    global mycursor, dataBase
+    try:
+        dataBase = mysql.connector.connect(
+            host = "172.28.96.170",
+            user = "root",
+            port = "3306",
+            database = "zaglowka")
          
-mycursor = dataBase.cursor()
+        mycursor = dataBase.cursor()
+    except:
+        print("not connected")
 
 def update_states(u_navi, u_motor, u_anchor):
       
